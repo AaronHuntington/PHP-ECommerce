@@ -6,7 +6,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2030</p>
+                    <p>Copyright &copy; Your Website 20300</p>
                 </div>
             </div>
         </footer>
@@ -21,5 +21,4 @@
     <script src="js/bootstrap.min.js"></script>
 
 </body>
-
 </html>
