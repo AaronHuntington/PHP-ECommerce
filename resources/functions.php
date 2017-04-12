@@ -1,6 +1,20 @@
 <?php
     ///////////////////////////
     //Helper Function - START
+    function set_message($msg){
+        if(!empty($msg)){
+            $_SESSION['message'] = $msg;
+        } else {
+            $msg = "";
+        }
+    }
+    function display_message(){
+        if(isset($_SESSION['message'])){
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+
+        }
+    }
     function redirect($location){
         header("Location: $location ");
     }
@@ -26,6 +40,12 @@
     /////////////////////////
 
 
+
+
+
+/*********************************************
+        Front End Function - START
+*********************************************/
     //////////////////////
     //Get Product - START
     function get_products(){
@@ -56,9 +76,7 @@ DELIMETER;
             echo $product;
 
         }
-    }
-    //Get Products - END 
-    /////////////////////
+    } //get_products()
 
     function get_categories(){
         $query = query("SELECT * FROM categories");
@@ -76,6 +94,110 @@ DELIMETER;
             echo $category_links;
         }
 
+    }//get_categories
+
+    function get_products_in_category_page(){
+        $query = query("SELECT * FROM  products WHERE product_category_id = ".escape_string($_GET['id'])."");
+        confirm($query);
+
+        while($row = fetch_array($query)){
+
+$product = <<<DELIMETER
+
+<div class="col-md-3 col-sm-6 hero-feature">
+    <div class="thumbnail">
+        <a href="item.php?id={$row['product_id']}">
+            <img src="http://placehold.it/800x500" alt="">
+        </a>
+        <div class="caption">
+            <h3>{$row['product_title']}</h3>
+            <p>{$row['short_description']}</p>
+            <p>
+                <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+DELIMETER;
+
+            echo $product;
+
+        }
+    } //get_products_in_category_page()
+
+    function get_products_in_shop_page(){
+        $query = query("SELECT * FROM  products");
+        confirm($query);
+
+        while($row = fetch_array($query)){
+
+$product = <<<DELIMETER
+
+<div class="col-md-3 col-sm-6 hero-feature">
+    <div class="thumbnail">
+        <a href="item.php?id={$row['product_id']}">
+            <img src="http://placehold.it/800x500" alt="">
+        </a>
+        <div class="caption">
+            <h3>{$row['product_title']}</h3>
+            <p>{$row['short_description']}</p>
+            <p>
+                <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+DELIMETER;
+
+            echo $product;
+
+        }
+    } //get_products_in_shop_page()
+
+    function login_user(){
+
+        if(isset($_POST['submit'])){
+            $username = escape_string($_POST['username']);
+            $password = escape_string($_POST['password']);
+
+            $query = query("SELECT * FROM users WHERE username='{$username}' AND password='{$password}'" );
+            confirm($query);
+
+            if(mysqli_num_rows($query) == 0){
+                set_message("Your Password or Username are wrong.");
+                redirect("login.php");
+            } else {
+                set_message('Welcome to Admin {$username}!');
+                redirect("admin");
+            }
+        }
     }
+
+    function send_message(){
+        if(isset($_POST['submit'])){
+            $to         = "YOUR_EMAIL@gmail.com";
+            $from_name  = $_POST['name'];
+            $subject    = $_POST['subject'];
+            $email      = $_POST['email'];
+            $message    = $_POST['message'];
+
+            $headers = "From: {$from_name} {$email}";
+
+            $result = mail($to, $subject, $message, $headers);
+
+            if(!$result){
+                set_message("Sorry we could not send your message.");
+                redirect("contact.php");
+            } else {
+                set_message("Your message has been sent.");
+            }
+        }
+    }
+
+/*********************************************
+        Front End Function - END
+*********************************************/
 
 ?>
