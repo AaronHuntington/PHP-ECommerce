@@ -2,7 +2,7 @@
     require_once("../resources/config.php");
     include(TEMPLATE_FRONT .  "/header.php");
 
-    $_SESSION[];
+    $_SESSION['product_1'] = 4;
 
  ?> 
 <div class="container">
