@@ -1,10 +1,16 @@
 <?php 
     require_once("../resources/config.php");
+    require_once("cart.php");
     include(TEMPLATE_FRONT .  "/header.php");
-    $_SESSION['product_1'] = 4;
+
+    if(isset($_SESSION['item_total'])){
+        // echo $_SESSION['product_1'];
+        // echo $_SESSION["item_total"];
+    }
 ?> 
 <div class="container">
     <div class="row">
+        <h4 class="text-center bg-danger"><?php display_message(); ?></h4>
         <h1>Checkout</h1>
         <form action="">
             <table class="table table-striped">
@@ -17,12 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>apple</td>
-                        <td>$23</td>
-                        <td>3</td>
-                        <td>2</td>
-                    </tr>
+                    <?php cart(); ?>
                 </tbody>
             </table>
         </form>
@@ -33,7 +34,15 @@
                 <tbody>
                     <tr class="cart-subtotal">
                         <th>Items:</th>
-                        <td><span class="amount">4</span></td>
+                        <td>
+                            <span class="amount">
+                                <?php
+                                    echo isset($_SESSION["item_quantity"]) ? 
+                                    $_SESSION['item_quantity'] : 
+                                    $_SESSION['item_quantity'] = "0"; 
+                                ?>
+                            </span>
+                        </td>
                     </tr>
                     <tr class="shipping">
                         <th>Shipping and Handling</th>
@@ -42,7 +51,16 @@
 
                     <tr class="order-total">
                         <th>Order Total</th>
-                        <td><strong><span class="amount">$3444</span></strong> </td>
+                        <td>
+                            <strong>
+                                <span class="amount">
+                                    <?php
+                                        echo "&#36;";
+                                        echo isset($_SESSION["item_total"]) ? $_SESSION['item_total'] : $_SESSION['item_total'] = "0";
+                                    ?>
+                                </span>
+                            </strong> 
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -35,15 +35,11 @@
     function fetch_array($result){
         return mysqli_fetch_array($result);
     }
-    //Helper Functions - END
-    /////////////////////////
+        //Helper Functions - END
+        /////////////////////////
 
-
-
-
-
-/*********************************************
-        Front End Function - START
+    /*********************************************
+            Front End Function - START
 *********************************************/
     //////////////////////
     //Get Product - START
@@ -66,7 +62,7 @@ $product = <<<DELIMETER
             </h4>
             <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
         </div>
-        <a class="btn btn-primary" href="cart.php?add={$row["product_id"]}">Add To Cart</a>
+        <a class="btn btn-primary" href="cart.php?add={$row["product_id"]}">Addss To Cart</a>
     </div>
 </div>
 
