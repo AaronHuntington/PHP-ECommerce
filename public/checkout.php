@@ -1,23 +1,20 @@
 <?php 
     require_once("../resources/config.php");
     include(TEMPLATE_FRONT .  "/header.php");
-
     $_SESSION['product_1'] = 4;
-
- ?> 
+?> 
 <div class="container">
     <div class="row">
         <h1>Checkout</h1>
         <form action="">
             <table class="table table-striped">
                 <thead>
-                  <tr>
-                   <th>Product</th>
-                   <th>Price</th>
-                   <th>Quantity</th>
-                   <th>Sub-total</th>
-             
-                  </tr>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Sub-total</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
@@ -25,19 +22,13 @@
                         <td>$23</td>
                         <td>3</td>
                         <td>2</td>
-                      
                     </tr>
                 </tbody>
             </table>
         </form>
-
-
-
-<!--  ***********CART TOTALS*************-->
-            
+<!--***********CART TOTALS*************-->
         <div class="col-xs-4 pull-right ">
             <h2>Cart Totals</h2>
-
             <table class="table table-bordered" cellspacing="0">
                 <tbody>
                     <tr class="cart-subtotal">
@@ -53,15 +44,8 @@
                         <th>Order Total</th>
                         <td><strong><span class="amount">$3444</span></strong> </td>
                     </tr>
-
-
                 </tbody>
-
             </table>
-
         </div><!-- CART TOTALS-->
-
-
  </div><!--Main Content-->
-
 <?php include(TEMPLATE_FRONT .  "/footer.php"); ?>
