@@ -1,6 +1,5 @@
 <?php 
     require_once("../resources/config.php");
-    require_once("cart.php");
     include(TEMPLATE_FRONT .  "/header.php");
 
     if(isset($_SESSION['item_total'])){
@@ -15,6 +14,7 @@
         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
             <input type="hidden" name="cmd" value="_cart">
             <input type="hidden" name="business" value="aaronhestrada-facilitator@gmail.com">
+            <input type="hidden" name="currency_code" value="US">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -28,9 +28,9 @@
                     <?php cart(); ?>
                 </tbody>
             </table>
-            <input type="image" name="upload"
-            src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
-            alt="PayPal - The safer, easier way to pay online">
+            
+            <?php echo show_paypal_button(); ?>
+
         </form>
 <!--***********CART TOTALS*************-->
         <div class="col-xs-4 pull-right ">

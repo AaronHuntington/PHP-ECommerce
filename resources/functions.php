@@ -1,6 +1,10 @@
 <?php
     ///////////////////////////
     //Helper Function - START
+    function last_id(){
+        global $connection;
+        return mysqli_insert_id($connection);
+    }
     function set_message($msg){
         if(!empty($msg)){
             $_SESSION['message'] = $msg;
@@ -62,7 +66,7 @@ $product = <<<DELIMETER
             </h4>
             <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
         </div>
-        <a class="btn btn-primary" href="cart.php?add={$row["product_id"]}">Addss To Cart</a>
+        <a class="btn btn-primary" href="../resources/cart.php?add={$row["product_id"]}">Addss To Cart</a>
     </div>
 </div>
 
@@ -164,7 +168,8 @@ DELIMETER;
                 set_message("Your Password or Username are wrong.");
                 redirect("login.php");
             } else {
-                set_message('Welcome to Admin {$username}!');
+                $_SESSION['username'] = $username;
+                // set_message('Welcome to Admin {$username}!');
                 redirect("admin");
             }
         }
@@ -194,5 +199,40 @@ DELIMETER;
 /*********************************************
         Front End Function - END
 *********************************************/
+
+    function display_orders(){
+
+        $query = query("SELECT * FROM orders");
+        confirm($query);
+
+        while($row = fetch_array($query)){
+
+$orders = <<<DELIMETER
+
+<tr>    
+    <td>{$row['order_id']}</td>
+    <td>{$row['order_amount']}</td>
+    <td>{$row['order_transaction']}</td>
+    <td>{$row['order_currency']}</td>
+    <td>{$row['order_status']}</td>
+    <td>    
+        <a 
+         class="btn btn-danger" 
+         href="../../resources/templates/back/delete_order.php?id={$row['order_id']}">
+            <span class="glyphicon glyphicon-remove">
+            </span>
+        </a>
+    </td>
+</tr>
+
+DELIMETER;
+
+        echo $orders;
+        } //While Loop
+    }
+
+
+
+
 
 ?>
