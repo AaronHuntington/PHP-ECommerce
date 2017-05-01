@@ -10,7 +10,4 @@
     } else {
         redirect("../../../public/admin/index.php?orders");
     }
-
-
-
 ?>
