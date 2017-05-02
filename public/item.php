@@ -23,7 +23,7 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-7">
-                <img class="img-responsive" src="<?php echo $row['product_image']; ?>" alt="">
+                <img class="img-responsive" src="../resources/<?php echo display_image($row['product_image']); ?>" alt="">
             </div>
             <div class="col-md-5">
                 <div class="thumbnail">
