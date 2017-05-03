@@ -1,16 +1,23 @@
+<?php
+    add_category();
+?>
+
 <div id="page-wrapper">
     <div class="container-fluid">   
         <h1 class="page-header">
             Product Categories
         </h1>
         <div class="col-md-4">
+
+            <h3 class="bg-success"><?php display_message(); ?></h3>
+
             <form action="" method="post">
                 <div class="form-group">
-                    <label for="category-title">Title</label>
-                    <input type="text" class="form-control">
+                    <label for="cat_title">Title</label>
+                    <input name="cat_title" type="text" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Add Category">
+                    <input name="add_category" type="submit" class="btn btn-primary" value="Add Category">
                 </div>     
             </form>
         </div>
@@ -23,10 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>20</td>
-                        <td>Example Title</td>
-                    </tr>
+                    <?php show_categories_in_admin(); ?>
                 </tbody>
             </table>
         </div>
