@@ -11,7 +11,8 @@
         if(!empty($msg)){
             $_SESSION['message'] = $msg;
         } else {
-            $msg = "";
+            $msg = "not work";
+            $_SESSION['message'] = $msg;
         }
     }
     function display_message(){
@@ -53,7 +54,164 @@
         $query = query("SELECT * FROM  products");
         confirm($query);
 
-        while($row = fetch_array($query)){
+        $rows = mysqli_num_rows($query);
+
+        if(isset($_GET['page'])){
+            $page = preg_replace('#[^0-9]#','',$_GET['page']);
+
+        } else {
+            $page = 1;
+        }
+
+        $perPage = 2;
+
+        $lastPage = ceil($rows / $perPage);
+
+        if($page < 1){
+            $page = 1;
+        } elseif($page > $lastPage) {
+            $page = $lastPage;
+        }
+
+
+        $middleNumbers = '';
+
+        $sub1 = $page - 1;
+        $sub2 = $page - 2;
+        $add1 = $page + 1;
+        $add2 = $page + 2;
+
+        if($page == 1){
+
+            $middleNumbers .= '
+                <li class="page-item active">
+                    <a>
+                        '.$page.'
+                    </a>
+                </li>
+            ';
+
+            $middleNumbers .= '
+                <li class="page-item">
+                    <a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$add1.'">
+                        '.$add1.'
+                    </a>
+                </li>
+            ';
+        } elseif($page == $lastPage) {
+            $middleNumbers .= '
+                <li class="page-item">
+                    <a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$sub1.'">
+                        '.$sub1.'
+                    </a>
+                </li>
+            ';
+            $middleNumbers .= '
+                <li class="page-item active">
+                    <a>
+                        '.$page.'
+                    </a>
+                </li>
+            ';
+        } elseif($page > 2 && $page < ($lastPage - 1)) {
+
+            $middleNumbers .= '
+                <li class="page-item">
+                    <a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$sub2.'">
+                        '.$sub2.'
+                    </a>
+                </li>
+            ';
+            $middleNumbers .= '
+                <li class="page-item">
+                    <a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$sub1.'">
+                        '.$sub1.'
+                    </a>
+                </li>
+            ';
+            $middleNumbers .= '
+                <li class="page-item active">
+                    <a>
+                        '.$page.'
+                    </a>
+                </li>
+            ';
+            $middleNumbers .= '
+                <li class="page-item">
+                    <a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$add1.'">
+                        '.$add1.'
+                    </a>
+                </li>
+            ';
+            $middleNumbers .= '
+                <li class="page-item">
+                    <a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$add2.'">
+                        '.$add2.'
+                    </a>
+                </li>
+            ';
+        } elseif($page > 1 && $page < $lastPage) {
+            $middleNumbers .= '
+                <li class="page-item">
+                    <a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$sub1.'">
+                        '.$sub1.'
+                    </a>
+                </li>
+            ';
+            $middleNumbers .= '
+                <li class="page-item active">
+                    <a>
+                        '.$page.'
+                    </a>
+                </li>
+            ';
+            $middleNumbers .= '
+                <li class="page-item">
+                    <a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$add1.'">
+                        '.$add1.'
+                    </a>
+                </li>
+            ';
+        }
+
+        $limit = 'LIMIT '.($page-1) * $perPage . ',' . $perPage;
+
+        $query2 = query("SELECT * FROM products $limit");
+        confirm($query2);
+
+        $outputPagination = "";
+
+        // if($lastPage != "1"){
+        //     echo "Page $page of $lastPage"
+        // }
+
+        if($page != 1){
+            $prev = $page - 1;
+
+            $outputPagination .= '
+                <li class="page-item">
+                    <a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$prev.'">
+                        Back
+                    </a>
+                </li>
+            ';
+        }
+        
+        $outputPagination .= $middleNumbers;
+
+        if($page != $lastPage){
+            $next = $page + 1;
+
+            $outputPagination .= '
+                <li class="page-item">
+                    <a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$next.'">
+                        Next
+                    </a>
+                </li>
+            ';
+        }
+
+        while($row = fetch_array($query2)){
 
             $product_image = display_image($row['product_image']);
 
@@ -62,7 +220,7 @@ $product = <<<DELIMETER
 <div class="col-sm-4 col-lg-4 col-md-4">
     <div class="thumbnail">
         <a href="item.php?id={$row["product_id"]}">
-            <img src="../resources/{$product_image}" alt="">
+            <img style="height: 90px;" src="../resources/{$product_image}" alt="">
         </a>
         <div class="caption">
             <h4 class="pull-right">&#36;{$row['product_price']}</h4>
@@ -70,15 +228,18 @@ $product = <<<DELIMETER
             </h4>
             <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
         </div>
-        <a class="btn btn-primary" href="../resources/cart.php?add={$row["product_id"]}">Addss To Cart</a>
+        <a class="btn btn-primary" href="../resources/cart.php?add={$row["product_id"]}">Add To Cart</a>
     </div>
 </div>
 
 DELIMETER;
-
             echo $product;
-
         }
+
+        echo '<div style="clear:both" class="text-center">';
+        echo "<ul class='pagination'>{$outputPagination}</ul>";
+        echo '</div>';
+
     } //get_products()
 
     function get_categories(){
@@ -484,6 +645,145 @@ function add_user(){
         set_message("User Created.");
 
         redirect("index.php?users");
+    }
+}
+
+function get_reports(){
+    $query = query("SELECT * FROM  reports");
+        confirm($query);
+
+        while($row = fetch_array($query)){
+
+$report = <<<DELIMETER
+
+<tr>
+    <td>{$row['report_id']}</td>
+    <td>{$row['product_id']}</td>
+    <td>{$row['order_id']}</td>
+    <td>{$row['product_price']}</td>
+    <td>{$row['product_title']}</td>
+    <td>{$row['product_quantity']}</td>
+    <td>    
+        <a 
+         class="btn btn-danger" 
+         href="../../resources/templates/back/delete_report.php?id={$row['report_id']}">
+            <span class="glyphicon glyphicon-remove">
+            </span>
+        </a>
+    </td>
+</tr>
+
+DELIMETER;
+
+            echo $report;
+
+        }
+}
+
+/************ Home Slider Functions **************/
+
+function add_slides(){
+    if(isset($_POST['add_slide'])){
+        $slide_title        = escape_string($_POST['slide_title']);
+        $slide_image        = $_FILES['file']['name'];
+        $slide_image_loc    = $_FILES['file']['tmp_name'];
+
+        if(empty($slide_title || empty($slide_image))){
+            echo "<p class='bg-danger'>This field cannot be empty</p>";
+        } else {
+            move_uploaded_file($slide_image_loc, UPLOAD_DIRECTORY.DS.$slide_image);
+
+            $query = query("INSERT INTO slides(slide_title, slide_image) 
+                           VALUES ('{$slide_title}','{$slide_image}')");
+            confirm($query);
+            set_message('Slide Added.');
+            redirect('index.php?slides');
+        }
+    }
+}
+
+function get_current_slide_in_admin(){
+    $query = query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+
+        $slide_image = display_image($row['slide_image']);
+
+$slide_active_admin = <<< DELIMETER
+
+    <img class="img-responsive" src="../../resources/{$slide_image}" alt="">    
+
+DELIMETER;
+
+        echo $slide_active_admin;
+    }
+}
+
+function get_active_slide(){
+    $query = query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+
+        $slide_image = display_image($row['slide_image']);
+
+$slide_active = <<< DELIMETER
+
+<div class="item active">
+    <img class="slide-image" src="../resources/{$slide_image}" alt="">
+</div>
+    
+
+DELIMETER;
+
+        echo $slide_active;
+    }
+}
+
+function get_slides(){
+    $query = query("SELECT * FROM slides");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+
+        $slide_image = display_image($row['slide_image']);
+
+$slides = <<< DELIMETER
+
+<div class="item">
+    <img class="slide-image" src="../resources/{$slide_image}" alt="">
+</div>
+    
+
+DELIMETER;
+
+        echo $slides;
+    }
+}
+
+function get_slide_thumbnails(){
+    $query = query("SELECT * FROM slides ORDER BY slide_id ASC");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+
+        $slide_image = display_image($row['slide_image']);
+
+$slide_thumb_admin = <<< DELIMETER
+
+<div class="col-xs-6 col-md-3 image_container">
+    <a href="index.php?delete_slide_id={$row['slide_id']}">
+        <img  class="img-responsive slide_image" src="../../resources/{$slide_image}" alt=""> 
+    </a>
+    <div class="caption">
+        <p>{$row['slide_title']}</p>
+    </div>
+</div>  
+
+DELIMETER;
+
+        echo $slide_thumb_admin;
     }
 }
 ?>
