@@ -5,8 +5,9 @@
         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-        <?php get_active_slide();?>
-        <?php get_slides();?>
+        <?php 
+            $slider = new home_slider;
+        ?>
     </div>
     <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
