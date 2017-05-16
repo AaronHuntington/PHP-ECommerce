@@ -1,16 +1,13 @@
 <?php
-    add_category();
+    $categories = new categories_admin;
 ?>
-
 <div id="page-wrapper">
     <div class="container-fluid">   
         <h1 class="page-header">
             Product Categories
         </h1>
         <div class="col-md-4">
-
-            <h3 class="bg-success"><?php display_message(); ?></h3>
-
+            <h3 class="bg-success"><?php utility::display_message(); ?></h3>
             <form action="" method="post">
                 <div class="form-group">
                     <label for="cat_title">Title</label>
@@ -30,7 +27,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php show_categories_in_admin(); ?>
+                    <?php 
+                        $categories->show_categories();
+                    ?>
                 </tbody>
             </table>
         </div>

@@ -1,3 +1,7 @@
+<?php
+    $products = new products_admin;
+    $products->delete_product();
+?>
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -15,7 +19,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php get_products_in_admin(); ?>
+                    <?php 
+                        $products->get_products();
+                    ?>
                 </tbody>
             </table>
         </div>

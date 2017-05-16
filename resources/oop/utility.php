@@ -2,6 +2,18 @@
 
     class utility {
 
+        //5/16/2017, Everytime I use this variable, it doesn't work.
+        //This is used by only $this->display_image($picture) function.
+        // public static $upload_directory = "uploads";
+
+        public static function display_image($picture){
+            $upload_directory = "uploads";
+
+            //5/16/2017,Everytime I use this variable, it doesn't work.
+            // $upload_directory = $this->upload_directory;
+
+            return $upload_directory.DS.$picture;
+        }
         public static function last_id(){
             global $connection;
             return mysqli_insert_id($connection);

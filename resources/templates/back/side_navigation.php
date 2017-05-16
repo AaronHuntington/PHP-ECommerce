@@ -20,9 +20,6 @@
             <a href="index.php?categories"><i class="fa fa-fw fa-desktop"></i> Categories</a>
         </li>
         <li>
-            <a href="index.php?edit_product"><i class="fa fa-fw fa-wrench"></i> Edit Product</a>
-        </li>
-        <li>
             <a href="index.php?users"><i class="fa fa-fw fa-wrench"></i> Users</a>
         </li>
         <li>

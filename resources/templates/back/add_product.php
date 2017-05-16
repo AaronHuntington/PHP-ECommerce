@@ -1,4 +1,7 @@
-<?php add_product(); ?>
+<?php 
+    $products = new products_admin;
+    $products->add_product();
+?>
 <div class="col-md-12">
     <div class="row">
         <h1 class="page-header">
@@ -37,7 +40,9 @@
                 <label for="product_category_id">Product Category</label>
                 <select name="product_category_id" id="" class="form-control">
                     <option value="">Select Category</option>
-                    <?php show_categories_add_product_page(); ?>
+                    <?php 
+                        categories_admin::show_categories_dropdown(); 
+                    ?>
                 </select>
             </div>
             <div class="form-group">

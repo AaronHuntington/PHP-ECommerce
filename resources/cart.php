@@ -6,16 +6,16 @@
     
     if(isset($_GET['add'])){
         
-        $query = query("SELECT * FROM products WHERE product_id=".escape_string($_GET['add'])."");
-        confirm($query);
+        $query = utility::query("SELECT * FROM products WHERE product_id=".utility::escape_string($_GET['add'])."");
+        utility::confirm($query);
 
-        while($row = fetch_array($query)){
+        while($row = utility::fetch_array($query)){
             if($row['product_quantity'] != $_SESSION['product_'.$_GET['add']]){
                 $_SESSION['product_'.$_GET['add']]+=1;
-                redirect("../public/checkout.php");
+                utility::redirect("../public/checkout.php");
             } else {
-                set_message("We only have ". $row['product_quantity']." ". "{$row['product_title']}" . "Available");
-                redirect('../public/checkout.php');
+                utility::set_message("We only have ". $row['product_quantity']." ". "{$row['product_title']}" . "Available");
+                utility::redirect('../public/checkout.php');
             }
         }
     }
@@ -27,9 +27,9 @@
             unset($_SESSION['item_total']);
             unset($_SESSION['item_quantity']);
             
-            redirect("../public/checkout.php");
+            utility::redirect("../public/checkout.php");
         } else {
-            redirect("../public/checkout.php");
+            utility::redirect("../public/checkout.php");
         }
     }
 
@@ -38,11 +38,10 @@
         unset($_SESSION['item_total']);
         unset($_SESSION['item_quantity']);
 
-        redirect("../public/checkout.php");
+        utility::redirect("../public/checkout.php");
     }
 
     function cart(){
-
         $total          = 0;
         $item_quantity  = 0;
         $item_name      = 1;
@@ -59,10 +58,10 @@
 
                     $id = substr($name, 8, $length);
 
-                    $query = query("SELECT * FROM products WHERE product_id = ".escape_string($id)."");
-                    confirm($query);
+                    $query = utility::query("SELECT * FROM products WHERE product_id = ".utility::escape_string($id)."");
+                    utility::confirm($query);
 
-                    while($row = fetch_array($query)){
+                    while($row = utility::fetch_array($query)){
 
                         $sub_productTotal = $row['product_price']*$value;
                         $item_quantity += $value;
@@ -113,8 +112,6 @@ DELIMETER;
     function show_paypal_button(){
 
         if(isset($_SESSION['item_quantity']) && $_SESSION['item_quantity'] != 0){
-
-
 $paypal_button = <<<DELIMETER
 
 <input type="image" name="upload"
@@ -152,10 +149,10 @@ DELIMETER;
                         $last_id = last_id();
                         confirm($send_order);
 
-                        $query = query("SELECT * FROM products WHERE product_id = ".escape_string($id)."");
-                        confirm($query);
+                        $query = utility::query("SELECT * FROM products WHERE product_id = ".utility::escape_string($id)."");
+                        utility::confirm($query);
 
-                        while($row = fetch_array($query)){
+                        while($row = utility::fetch_array($query)){
 
                             $product_price      = $row['product_price'];
                             $product_title      = $row['product_title'];
@@ -165,10 +162,10 @@ DELIMETER;
                             $total += $sub_productTotal;
                             $item_quantity;
 
-                            $insert_report = query("INSERT INTO reports (product_id, order_id, product_title, product_price, product_quantity)
+                            $insert_report = utility::query("INSERT INTO reports (product_id, order_id, product_title, product_price, product_quantity)
                                 VALUES ('{$id}','{$last_id}','{$product_title}','{$product_price}','{$value}')");
 
-                            confirm($insert_report);
+                            utility::confirm($insert_report);
                         }
 
                         // $_SESSION["item_total"] = $total += $sub_productTotal;
@@ -178,7 +175,7 @@ DELIMETER;
             }
             session_destroy();
         } else {
-            redirect("index.php");
+            utility::redirect("index.php");
         }
     }
 ?>

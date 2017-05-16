@@ -14,10 +14,12 @@ class products{
     } //get_products() 
 
     function get_products_in_category_page(){
-        $query = query("SELECT * FROM  products WHERE product_category_id = ".escape_string($_GET['id'])."");
-        confirm($query);
+        global $database;
 
-        while($row = fetch_array($query)){
+        $query = $database->query("SELECT * FROM  products WHERE product_category_id = ".utility::escape_string($_GET['id'])."");
+        $database->confirm($query);
+
+        while($row = utility::fetch_array($query)){
 
             $product_image = display_image($row['product_image']);
 

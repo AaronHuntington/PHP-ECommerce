@@ -3,7 +3,7 @@
     include(TEMPLATE_BACK . "/header.php");
 
     if(!isset($_SESSION['username'])){
-        redirect("../../public/");
+        utility::redirect("../../public/");
     }
 ?>
 
@@ -11,7 +11,6 @@
         <div id="page-wrapper">
 
             <div class="container-fluid">
-
 
                 <?php
                     if($_SERVER['REQUEST_URI'] == "/gitHub/PHP-Ecommerce/public/admin/" ||

@@ -29,7 +29,7 @@ class database {
         }
     }
 
-    public static function confirm($result){
+    public function confirm($result){
         // global $connection; 
         if(!$result){
             die("QUERY FAILED " . mysqli_error($this->connection));

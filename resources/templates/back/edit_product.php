@@ -1,19 +1,15 @@
-<?php  
-    update_product(); 
+<?php 
+    $product = new products_admin;
+    $product->update_product();
+    $product->get_content_for_edit_form();
 
-    $query = query("SELECT * FROM products WHERE product_id = " . escape_string($_GET['id']) . " ");
-    confirm($query);
-
-    while($row = fetch_array($query)){
-        $product_title          = escape_string($row['product_title']);
-        $product_category_id    = escape_string($row['product_category_id']);
-        $product_price          = escape_string($row['product_price']);
-        $product_description    = escape_string($row['product_description']);
-        $product_short_desc     = escape_string($row['short_description']);
-        $product_quantity       = escape_string($row['product_quantity']);
-        // $product_image          = escape_string($row['product_image']);
-        $product_image = display_image($row['product_image']);
-    }
+    $product_title          = $product->product_title;
+    $product_category_id    = $product->product_category_id;
+    $product_price          = $product->product_price;
+    $product_description    = $product->product_description;
+    $product_short_desc     = $product->product_short_desc;
+    $product_quantity       = $product->product_quantity;
+    $product_image          = $product->product_image;
 ?>
 <div class="col-md-12">
     <div class="row">
@@ -39,7 +35,9 @@
             </div>
             <div class="form-group">
                 <label for="product_short_desc">Product Short Description</label>
-                <textarea name="product_short_desc" id="" cols="30" rows="3" class="form-control"><?php echo $product_short_desc; ?></textarea>
+                <textarea name="product_short_desc" id="" cols="30" rows="3" class="form-control">
+                    <?php echo $product_short_desc; ?>
+                </textarea>
             </div>
         </div><!--Main Content-->
         <!-- SIDEBAR-->
@@ -52,8 +50,14 @@
             <div class="form-group">
                 <label for="product_category_id">Product Category</label>
                 <select name="product_category_id" id="" class="form-control">
-                    <option value="<?php echo $product_category_id; ?>"><?php echo show_product_category_title($product_category_id); ?></option>
-                    <?php show_categories_add_product_page(); ?>
+                    <option value="<?php echo $product_category_id; ?>">
+                        <?php 
+                            echo categories_admin::show_product_category_title($product_category_id);
+                        ?>
+                    </option>
+                    <?php 
+                        categories_admin::show_categories_dropdown();
+                    ?>
                 </select>
             </div>
             <div class="form-group">

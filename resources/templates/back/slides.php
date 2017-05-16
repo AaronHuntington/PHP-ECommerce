@@ -3,7 +3,7 @@
     <div class="col-xs-3">
         <form action="" method="post" enctype="multipart/form-data">
             <?php 
-                display_message(); 
+                utility::display_message(); 
             ?>
             <div class="form-group">
                 <input type="file" name="file">
