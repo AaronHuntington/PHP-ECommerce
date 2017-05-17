@@ -1,4 +1,8 @@
-<?php add_slides(); ?>
+<?php 
+    $slider = new home_slider_admin;
+    $slider->add_slide();
+    $slider->delete_slide();
+?>
 <div class="row">
     <div class="col-xs-3">
         <form action="" method="post" enctype="multipart/form-data">
@@ -18,11 +22,15 @@
         </form>
     </div>
     <div class="col-xs-8">
-        <?php get_current_slide_in_admin(); ?>
+        <?php 
+            $slider->get_current_slide_in_admin(); 
+        ?>
     </div>
 </div>
 <hr>
 <h1>Slides Available</h1>
 <div class="row">
-    <?php get_slide_thumbnails(); ?>
+    <?php 
+        $slider->get_slide_thumbnails();
+    ?>
 </div>

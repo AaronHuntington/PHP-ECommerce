@@ -9,6 +9,7 @@
     require_once(OOP_FOLDER_PATH."contact.php");
     require_once(OOP_FOLDER_PATH."pagination.php");
     require_once(OOP_FOLDER_PATH."cart.php");
+    require_once(OOP_FOLDER_PATH."seo.php");
 
 
 ?>

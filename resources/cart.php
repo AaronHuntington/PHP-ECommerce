@@ -66,10 +66,9 @@
                         $sub_productTotal = $row['product_price']*$value;
                         $item_quantity += $value;
 
-                        $product_image = display_image($row['product_image']);
+                        $product_image = utility::display_image($row['product_image']);
 
 $product = <<<DELIMETER
-
 <tr>
     <td>
         {$row['product_title']}<br>
@@ -89,7 +88,6 @@ $product = <<<DELIMETER
 <input type="hidden" name="item_number_{$item_number}" value="{$row['product_id']}">
 <input type="hidden" name="amount_{$amount}" value="{$row['product_price']}">
 <input type="hidden" name="quantity_{$quantity}" value="{$value}">
-
 DELIMETER;
                         echo $product;
 

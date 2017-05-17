@@ -21,7 +21,7 @@ class products{
 
         while($row = utility::fetch_array($query)){
 
-            $product_image = display_image($row['product_image']);
+            $product_image = utility::display_image($row['product_image']);
 
 $product = <<<DELIMETER
 <div class="col-md-3 col-sm-6 hero-feature">
@@ -49,12 +49,14 @@ DELIMETER;
     } //get_products_in_category_page()
 
     function get_products_in_shop_page(){
-        $query = query("SELECT * FROM  products");
-        confirm($query);
+        global $database;
 
-        while($row = fetch_array($query)){
+        $query = $database->query("SELECT * FROM  products");
+        $database->confirm($query);
 
-            $product_image = display_image($row['product_image']);
+        while($row = $database->fetch_array($query)){
+
+            $product_image = utility::display_image($row['product_image']);
 
 $product = <<<DELIMETER
 

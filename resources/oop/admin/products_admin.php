@@ -17,9 +17,7 @@ class products_admin {
         utility::confirm($query);
 
         while($row = utility::fetch_array($query)){
-
             $category = categories_admin::show_product_category_title($row['product_category_id']);
-
             $product_image = utility::display_image($row['product_image']);
 
 $product = <<<DELIMETER

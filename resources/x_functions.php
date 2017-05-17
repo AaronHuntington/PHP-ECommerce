@@ -1,5 +1,5 @@
 <?php
-    $upload_directory = "uploads";
+    // $upload_directory = "uploads";
 
     ///////////////////////////
     //Helper Function - START
@@ -227,11 +227,11 @@
 //     }
 
 /********* Admin Products *********/
-function display_image($picture){
-    global $upload_directory;
+// function display_image($picture){
+//     global $upload_directory;
 
-    return $upload_directory.DS.$picture;
-}
+//     return $upload_directory.DS.$picture;
+// }
 
 // function get_products_in_admin(){
 //     $query = utility::query("SELECT * FROM  products");
@@ -495,112 +495,112 @@ function display_image($picture){
 
 /************ Home Slider Functions **************/
 
-function add_slides(){
-    if(isset($_POST['add_slide'])){
-        $slide_title        = utility::escape_string($_POST['slide_title']);
-        $slide_image        = $_FILES['file']['name'];
-        $slide_image_loc    = $_FILES['file']['tmp_name'];
+// function add_slides(){
+//     if(isset($_POST['add_slide'])){
+//         $slide_title        = utility::escape_string($_POST['slide_title']);
+//         $slide_image        = $_FILES['file']['name'];
+//         $slide_image_loc    = $_FILES['file']['tmp_name'];
 
-        if(empty($slide_title || empty($slide_image))){
-            echo "<p class='bg-danger'>This field cannot be empty</p>";
-        } else {
-            move_uploaded_file($slide_image_loc, UPLOAD_DIRECTORY.DS.$slide_image);
+//         if(empty($slide_title || empty($slide_image))){
+//             echo "<p class='bg-danger'>This field cannot be empty</p>";
+//         } else {
+//             move_uploaded_file($slide_image_loc, UPLOAD_DIRECTORY.DS.$slide_image);
 
-            $query =utility::query("INSERT INTO slides(slide_title, slide_image) 
-                           VALUES ('{$slide_title}','{$slide_image}')");
-            utility::confirm($query);
-            utility::set_message('Slide Added.');
-            utility::redirect('index.php?slides');
-        }
-    }
-}
+//             $query =utility::query("INSERT INTO slides(slide_title, slide_image) 
+//                            VALUES ('{$slide_title}','{$slide_image}')");
+//             utility::confirm($query);
+//             utility::set_message('Slide Added.');
+//             utility::redirect('index.php?slides');
+//         }
+//     }
+// }
 
-function get_current_slide_in_admin(){
-    $query =utility::query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
-   utility::confirm($query);
+// function get_current_slide_in_admin(){
+//     $query =utility::query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
+//    utility::confirm($query);
 
-    while($row = utility::fetch_array($query)){
+//     while($row = utility::fetch_array($query)){
 
-        $slide_image = display_image($row['slide_image']);
+//         $slide_image = display_image($row['slide_image']);
 
-$slide_active_admin = <<< DELIMETER
+// $slide_active_admin = <<< DELIMETER
 
-    <img class="img-responsive" src="../../resources/{$slide_image}" alt="">    
+//     <img class="img-responsive" src="../../resources/{$slide_image}" alt="">    
 
-DELIMETER;
+// DELIMETER;
 
-        echo $slide_active_admin;
-    }
-}
+//         echo $slide_active_admin;
+//     }
+// }
 
-function get_active_slide(){
-    global $database;
+// function get_active_slide(){
+//     global $database;
 
-    $query = $database->query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
-    $database->confirm($query);
+//     $query = $database->query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
+//     $database->confirm($query);
 
-    while($row = utility::fetch_array($query)){
+//     while($row = utility::fetch_array($query)){
 
-        $slide_image = display_image($row['slide_image']);
+//         $slide_image = display_image($row['slide_image']);
 
-$slide_active = <<< DELIMETER
+// $slide_active = <<< DELIMETER
 
-<div class="item active">
-    <img class="slide-image" src="../resources/{$slide_image}" alt="">
-</div>
+// <div class="item active">
+//     <img class="slide-image" src="../resources/{$slide_image}" alt="">
+// </div>
     
 
-DELIMETER;
+// DELIMETER;
 
-        echo $slide_active;
-    }
-}
+//         echo $slide_active;
+//     }
+// }
 
-function get_slides(){
-    global $database;
+// function get_slides(){
+//     global $database;
 
-    $query = $database->query("SELECT * FROM slides");
-    $database->confirm($query);
+//     $query = $database->query("SELECT * FROM slides");
+//     $database->confirm($query);
 
-    while($row = utility::fetch_array($query)){
+//     while($row = utility::fetch_array($query)){
 
-        $slide_image = display_image($row['slide_image']);
+//         $slide_image = display_image($row['slide_image']);
 
-$slides = <<< DELIMETER
+// $slides = <<< DELIMETER
 
-<div class="item">
-    <img class="slide-image" src="../resources/{$slide_image}" alt="">
-</div>
+// <div class="item">
+//     <img class="slide-image" src="../resources/{$slide_image}" alt="">
+// </div>
     
 
-DELIMETER;
+// DELIMETER;
 
-        echo $slides;
-    }
-}
+//         echo $slides;
+//     }
+// }
 
-function get_slide_thumbnails(){
-    $query =utility::query("SELECT * FROM slides ORDER BY slide_id ASC");
-   utility::confirm($query);
+// function get_slide_thumbnails(){
+//     $query =utility::query("SELECT * FROM slides ORDER BY slide_id ASC");
+//    utility::confirm($query);
 
-    while($row = utility::fetch_array($query)){
+//     while($row = utility::fetch_array($query)){
 
-        $slide_image = display_image($row['slide_image']);
+//         $slide_image = display_image($row['slide_image']);
 
-$slide_thumb_admin = <<< DELIMETER
+// $slide_thumb_admin = <<< DELIMETER
 
-<div class="col-xs-6 col-md-3 image_container">
-    <a href="index.php?delete_slide_id={$row['slide_id']}">
-        <img  class="img-responsive slide_image" src="../../resources/{$slide_image}" alt=""> 
-    </a>
-    <div class="caption">
-        <p>{$row['slide_title']}</p>
-    </div>
-</div>  
+// <div class="col-xs-6 col-md-3 image_container">
+//     <a href="index.php?delete_slide_id={$row['slide_id']}">
+//         <img  class="img-responsive slide_image" src="../../resources/{$slide_image}" alt=""> 
+//     </a>
+//     <div class="caption">
+//         <p>{$row['slide_title']}</p>
+//     </div>
+// </div>  
 
-DELIMETER;
+// DELIMETER;
 
-        echo $slide_thumb_admin;
-    }
-}
+//         echo $slide_thumb_admin;
+//     }
+// }
 ?>

@@ -200,8 +200,7 @@ class pagination {
         $database->confirm($query);
 
         while($row = utility::fetch_array($query)){
-
-            $product_image = display_image($row['product_image']);
+            $product_image = utility::display_image($row['product_image']);
 
 $product = <<<DELIMETER
 

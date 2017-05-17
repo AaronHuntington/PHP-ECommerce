@@ -39,7 +39,7 @@ class home_slider {
 
         while($row = utility::fetch_array($query)){
 
-            $slide_image = display_image($row['slide_image']);
+            $slide_image = utility::display_image($row['slide_image']);
 
 $slides = <<< DELIMETER
 <div class="item">
@@ -58,15 +58,13 @@ DELIMETER;
 
         while($row = utility::fetch_array($query)){
 
-            $slide_image = display_image($row['slide_image']);
+            $slide_image = utility::display_image($row['slide_image']);
 
 $slide_active = <<< DELIMETER
 
 <div class="item active">
     <img class="slide-image" src="../resources/{$slide_image}" alt="">
 </div>
-    
-
 DELIMETER;
 
             echo $slide_active;

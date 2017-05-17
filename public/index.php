@@ -8,12 +8,19 @@
             <div class="col-md-9">
                 <div class="row carousel-holder">
                     <div class="col-md-12">
+
                         <?php 
                             include(TEMPLATE_FRONT . DS . "slider.php"); 
 
+
+                            $seo = new seo;
+                            $seo->get_header_meta_tags('testpage');
+
+
+
+                            //5/16/17, Tried to get this class and function work but no.
                             // $slider = new home_slider;
                             // $slider->slider_html();
-
                         ?>
                     </div>
                 </div>

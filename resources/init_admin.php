@@ -4,4 +4,5 @@
     require_once(OOPADMIN_FOLDER_PATH."orders.php");
     require_once(OOPADMIN_FOLDER_PATH."reports.php");
     require_once(OOPADMIN_FOLDER_PATH."categories.php");
+    require_once(OOPADMIN_FOLDER_PATH."home_slider.php");
 ?>
