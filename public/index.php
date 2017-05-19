@@ -1,5 +1,6 @@
-<?php 
+<?php
     require_once("../resources/config.php"); 
+    seo::set_pageTitle('home_page');
     include(TEMPLATE_FRONT . DS . "header.php");
 ?>
     <div class="container">
@@ -11,12 +12,6 @@
 
                         <?php 
                             include(TEMPLATE_FRONT . DS . "slider.php"); 
-
-
-                            $seo = new seo;
-                            $seo->get_header_meta_tags('testpage');
-
-
 
                             //5/16/17, Tried to get this class and function work but no.
                             // $slider = new home_slider;

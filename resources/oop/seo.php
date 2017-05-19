@@ -1,35 +1,33 @@
 <?php
 
 class seo {
+    static $page_title = 'default';
     public $mainTitle;
     public $metaTitle;
     public $metaContent;
 
-    public function get_header_meta_tags($page_name){
+    public static function set_pageTitle($title){
+        self::$page_title = $title;
+    }
+
+    public function get_header_meta_tags(){
         global $database;
 
-        $query = $database->query("SELECT * FROM  seo_header WHERE page='".utility::escape_string($page_name)."'");
+        $query = $database->query("SELECT * FROM seo_header WHERE page='".utility::escape_string(self::$page_title)."'");
         $database->confirm($query);
 
-        // echo '<pre>';
-        // var_dump($query);
-        // echo $query['field_count'];
-        // // var_dump(utility::fetch_array($query));
-
         while($row = utility::fetch_array($query)){
-
-$tags = <<< DELIMETER
-
-    <br>
-        {$row['page']}
-        {$row['name']}
-        {$row['content']}
-DELIMETER;
-
-            echo $tags;
+            if($row['name'] == 'main_title'){
+                echo '<title>'.$row["content"].'</title>';
+            } else {
+                echo '<meta name="'.$this->get_title($row["name"]).'" content="'.$row["content"].'">';
+            }
         }
+    }//get_header_meta_tags()
 
-
-    }//header_meta_tags()
+    public function get_title($string){
+        $name = substr($string, 5);
+        return $name;
+    }//get_title($string)
 }//class seo
 ?>

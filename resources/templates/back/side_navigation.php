@@ -15,15 +15,23 @@
         <li>
             <a href="index.php?add_product"><i class="fa fa-fw fa-table"></i> Add Product</a>
         </li>
-        
+        <li>
+            <a href="index.php?mfg"><i class="fa fa-fw fa-table"></i> Manufacturer</a>
+        </li>
         <li>
             <a href="index.php?categories"><i class="fa fa-fw fa-desktop"></i> Categories</a>
+        </li>
+        <li>
+            <a href="index.php?mfg"><i class="fa fa-fw fa-wrench"></i> MFG</a>
         </li>
         <li>
             <a href="index.php?users"><i class="fa fa-fw fa-wrench"></i> Users</a>
         </li>
         <li>
             <a href="index.php?slides"><i class="fa fa-fw fa-wrench"></i> Slides</a>
+        </li>
+        <li>
+            <a href="index.php?seoHeader"><i class="fa fa-fw fa-wrench"></i> SEO</a>
         </li>
     </ul>
 </div>

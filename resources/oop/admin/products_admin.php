@@ -33,7 +33,7 @@ $product = <<<DELIMETER
     <td>{$row['product_quantity']}</td>
     <td>    
         <a 
-         class="btn btn-danger" 
+         class="btn btn-danger del_product" 
          href="index.php?products&del={$row['product_id']}">
             <span class="glyphicon glyphicon-remove">
             </span>

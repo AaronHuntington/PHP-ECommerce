@@ -48,8 +48,17 @@
                     if(isset($_GET['slides'])){
                         include(TEMPLATE_BACK."/slides.php");
                     }
-                    if(isset($_GET['delete_slide_id'])){
-                        include(TEMPLATE_BACK."/delete_slide.php");
+                    if(isset($_GET['seoHeader'])){
+                        include(TEMPLATE_BACK."/seo.php");
+                    }
+                    if(isset($_GET['add_seoHeader'])){
+                        include(TEMPLATE_BACK."/add_seoHeader.php");
+                    }
+                    if(isset($_GET['edit_seoHeader'])){
+                        include(TEMPLATE_BACK."/edit_seoHeader.php");
+                    }
+                    if(isset($_GET['mfg'])){
+                        include(TEMPLATE_BACK."/mfg.php");
                     }
                 ?>
             </div><!-- /.container-fluid -->

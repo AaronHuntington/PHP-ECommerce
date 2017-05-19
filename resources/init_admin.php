@@ -5,4 +5,6 @@
     require_once(OOPADMIN_FOLDER_PATH."reports.php");
     require_once(OOPADMIN_FOLDER_PATH."categories.php");
     require_once(OOPADMIN_FOLDER_PATH."home_slider.php");
+    require_once(OOPADMIN_FOLDER_PATH."seo.php");
+    require_once(OOPADMIN_FOLDER_PATH."mfg.php");
 ?>

@@ -29,6 +29,16 @@ class database {
         }
     }
 
+    public function multi_query($sql){
+        $result = mysqli_multi_query($this->connection,$sql);
+
+        if($result){
+            return $result;
+        } else {
+            die("SQL script query failed.");
+        }
+    }
+
     public function confirm($result){
         // global $connection; 
         if(!$result){

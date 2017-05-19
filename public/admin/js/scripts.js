@@ -1,5 +1,7 @@
 $(document).ready(function(){
-    $(".image_container").click(function(){
+    $(".image_container, 
+      .del_seoHeader, 
+      .del_product").click(function(){
 
         var user_input;
 
