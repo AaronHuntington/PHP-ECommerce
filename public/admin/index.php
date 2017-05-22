@@ -60,6 +60,9 @@
                     if(isset($_GET['mfg'])){
                         include(TEMPLATE_BACK."/mfg.php");
                     }
+                    if(isset($_GET['add_mfg'])){
+                        include(TEMPLATE_BACK."/add_mfg.php");
+                    }
                 ?>
             </div><!-- /.container-fluid -->
         </div><!-- /#page-wrapper -->

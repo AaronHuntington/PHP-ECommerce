@@ -1,10 +1,20 @@
 <?php
-    $orders = new orders;
+    $mfg = new mfg_admin;
+    $mfg->del_mfg();
+
+    $mfg->id = 1;
+    $mfg->set_classVars_byId();
+    echo $mfg->id."<br>";
+    echo $mfg->mfg."<br>";
+    echo $mfg->title."<br>";
 ?>
 <div class="col-md-12">
     <div class="row">
         <h1 class="page-header">
             Manufacture Pages
+            <a class="btn btn-default" href="index.php?add_mfg" role="button">
+                ADD
+            </a>
         </h1>
         <h4 class="bg-success">
             <?php utility::display_message();?>
@@ -16,14 +26,12 @@
                 <tr>
                     <th>ID</th>
                     <th>MFG</th> 
-                    <th>Transaction</th>
-                    <th>Currency</th>
-                    <th>Status</th>
+                    <th>Title</th>
                 </tr>
             </thead>
             <tbody>
                 <?php 
-                    $orders->display_orders();
+                    $mfg->display_mfgs();
                 ?>
             </tbody>
         </table>

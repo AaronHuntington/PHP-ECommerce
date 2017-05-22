@@ -53,5 +53,15 @@
         public static function fetch_array($result){
             return mysqli_fetch_array($result);
         }
+        public static function del_folder($folder){
+            self::clean_folder($folder);
+            rmdir($folder);
+        }
+        public static function clean_folder($folder_path){
+            $files = glob($folder_path.'/*');
+            foreach($files as $file){
+                if(is_file($file)){unlink($file);}
+            }
+        }
     }
 ?>

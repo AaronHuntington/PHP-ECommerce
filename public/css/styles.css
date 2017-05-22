@@ -1,3 +1,7 @@
+.borderRed{border: 2px solid red;}
+.borderBlue{border: 2px solid blue;}
+.borderGreen{border: 2px solid green;}
+
 .caption{
     height: 156px;
 }
