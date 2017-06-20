@@ -23,7 +23,11 @@
                 <input type="password" name="password" class="form-control">
             </div>
             <div class="form-group">
+                <input type="file" name="user_image">
+            </div>
+            <div class="form-group">
                 <input type="submit" name="add_user" class="btn btn-warning btn-lg" value="Add User">
             </div>
+        </div>
     </form>
 </div><!-- /.container-fluid -->

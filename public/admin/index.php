@@ -3,10 +3,9 @@
     include(TEMPLATE_BACK . "/header.php");
 
     if(!isset($_SESSION['username'])){
-        utility::redirect("../../public/");
+        utility::redirect("../../public/login.php");
     }
 ?>
-
 
         <div id="page-wrapper">
 
@@ -62,6 +61,9 @@
                     }
                     if(isset($_GET['add_mfg'])){
                         include(TEMPLATE_BACK."/add_mfg.php");
+                    }
+                    if(isset($_GET['edit_mfg'])){
+                        include(TEMPLATE_BACK."/edit_mfg.php");
                     }
                 ?>
             </div><!-- /.container-fluid -->

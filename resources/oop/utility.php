@@ -18,6 +18,18 @@
             global $connection;
             return mysqli_insert_id($connection);
         }
+        // public static function get_last_id($table){
+        //     global $database;
+        //     // $the_result_array = $database->query("SELECT * FROM ".$table." ORDER BY id DESC LIMIT 1");
+        //     $the_result_array = $database->query("SELECT * FROM ".$table." WHERE id=1 LIMIT 1");
+
+            
+        //     return !empty($the_result_array) ? array_shift($the_result_array) : false;  
+        //     // return mysqli_fetch($the_result_array);     
+        //     // return $the_result_array;   
+
+        //     // echo $table;
+        // }
         public static function set_message($msg){
             if(!empty($msg)){
                 $_SESSION['message'] = $msg;

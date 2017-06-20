@@ -49,11 +49,11 @@ DELIMETER;
             $sql = "INSERT INTO seo_header (page, name, content) 
                     VALUES('{$page_name}','main_title','{$main_title}');";
             $sql .= "INSERT INTO seo_header (page, name, content) 
-                     VALUES('{$page_name}','meta_titles','{$meta_title}');";
+                    VALUES('{$page_name}','meta_titles','{$meta_title}');";
             $sql .= "INSERT INTO seo_header(page, name, content) 
-                     VALUES('{$page_name}','meta_description','{$meta_description}');";
+                    VALUES('{$page_name}','meta_description','{$meta_description}');";
             $sql .= "INSERT INTO seo_header(page, name, content) 
-                     VALUES('{$page_name}','meta_keywords','{$meta_keywords}')";
+                    VALUES('{$page_name}','meta_keywords','{$meta_keywords}')";
 
             $query = $database->multi_query($sql);
             $last_id = utility::last_id();

@@ -2,11 +2,8 @@
     $mfg = new mfg_admin;
     $mfg->del_mfg();
 
-    $mfg->id = 1;
-    $mfg->set_classVars_byId();
-    echo $mfg->id."<br>";
-    echo $mfg->mfg."<br>";
-    echo $mfg->title."<br>";
+    // $mfg->id = 1;
+    // $mfg->set_classVars_byId();
 ?>
 <div class="col-md-12">
     <div class="row">

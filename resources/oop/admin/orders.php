@@ -1,6 +1,24 @@
 <?php
 
 class orders {
+    protected static $db_table = "order";
+    protected static $db_table_fields = array('order_id','order_amount','order_transaction','order_status','order_currency');
+    public $order_id;
+    public $order_amount;
+    public $orderT_transaction;
+    public $order_status; 
+    public $order_currency; 
+
+//////////////
+    
+
+
+
+/////////////
+
+
+
+
 
     public function __construct(){
         $this->delete_order();

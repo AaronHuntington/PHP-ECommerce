@@ -2,6 +2,33 @@
 
 class products_admin {
 
+
+
+////////////////////////////////////////////////////
+    public static $db_table = "";
+    public static $db_table_fields = array('id','product_title','product_category_id','product_price','product_quantity','product_description','product_image');
+
+    public $id; 
+    public $product_title; 
+    public $product_category_id; 
+    public $product_price; 
+    public $product_quantity;
+    public $product_description; 
+    public $product_image; 
+
+    public $filename;
+    public $tmp_path;
+    public $type;
+    public $size; 
+    public static $img_directory; 
+    public $image_placeholder = "http://placehold.it/400x400text=image";
+
+
+
+
+//////////////////////////////////////////////////////////////////
+
+
     public $product_title;          
     public $product_category_id;    
     public $product_price;          

@@ -19,29 +19,12 @@
                         ?>
                     </div>
                 </div>
-
                 <div class="row">
-                    <div class="col-mg-12">
-                
-
-                        <?php
-                            $mfg = new mfg;
-                            $mfg->get_mfgs_in_homePage();
-                        ?>
-
-
-                    </div>
-                </div>
-
-
-
-                <!-- 05/30/17 - These are the products, add this when ready.  -->
-             <!--    <div class="row">
                     <?php  
                         $products = new products;
                         $products->get_products();
                     ?>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>

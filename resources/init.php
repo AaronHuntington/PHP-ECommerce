@@ -1,6 +1,7 @@
 <?php 
 
     require_once(OOP_FOLDER_PATH."database.php");
+    require_once(OOP_FOLDER_PATH."db_objects.php");
     require_once(OOP_FOLDER_PATH."home_slider.php");
     require_once(OOP_FOLDER_PATH."utility.php");
     require_once(OOP_FOLDER_PATH."products.php");
